@@ -1,0 +1,9 @@
+ROM(Read Only Memory)
+기억된 내용만 읽을 수 있음, 쓰기는 불가능
+전원이 꺼져도, 내용이 지워지지 않는 비휘발성 메모리
+
+Mask Rom - 공장에서 프로그램화, 변경 불가능
+PROM - 1번 내용 기입 가능, 이후 읽기만 가능
+EPROM(Erasable PROM) - UVEPROM, 자외선 이용, 여러번 지우거나, 기록 가능
+EAROM(Erasable Alterable ROM) - 전기적 특성 이용, 기록된 정보 일부 변경가능
+EEPROM(Electronic EPROM) - 전기적인 방법, 기록을 여러번 수정, 기록 가능
