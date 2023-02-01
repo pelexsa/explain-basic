@@ -1,0 +1,23 @@
+vector
+자동으로 메모리가 할당되는 배열
+
+template 사용하므로, 데이터 타입 자유
+삽입 삭제 자주 일어난다면 비효율
+
+생성
+vector<int> v[10];
+vector 10개 생성
+
+vector<int> v;
+
+vector<int> v(2);
+- 크기 2, 데이터 0 초기화
+
+vector<int> v(vector 크기, 초기화할 값);
+vector<int> v(3, 2);
+- 크기 3, 데이터 2 초기화
+
+
+
+
+fun
