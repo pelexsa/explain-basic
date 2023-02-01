@@ -1,0 +1,11 @@
+switch(비교값){
+  case "" :
+      실행 로직
+      break;
+  case "" :     //조건 여러개 사용
+  case "" :
+      실행 로직
+      break;
+  default:
+      실행 로직
+}
