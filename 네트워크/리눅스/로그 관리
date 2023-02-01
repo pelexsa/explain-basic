@@ -1,0 +1,6 @@
+파일 삭제
+find /path -mindepth 1 -maxdepth 1 -atime +2 -type d -exec rm -rf {} \;
+
+atime  : access time, 파일이 열리거나, 확인한 마지막 접근 시간
+mtime : 파일 데이터 변경 마지막 시간
+ctime  :  파일 데이터, 권한, 속성 값이 변경된 시점 기록된 값
