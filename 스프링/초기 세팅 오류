@@ -1,0 +1,8 @@
+스프링 버전 3.x.x 사용 시, 자바 17로 선택 안 하고 다른 버전으로 실행 하여
+unsupported class file major version 64 오류 발생시,
+intelliJ
+  Settings - Build, Execution, Deployment
+  - Build Tools - Gradle - Gradle JVM 변경
+
+Project Structure
+  Project Settings = Project - SDK 변경
