@@ -1,0 +1,5 @@
+자동으로 나오는 output 탭 안 나오게 하는법 
+윈도우 - 설정 - 편집기 - SQL 편집기 - Open output viewer on new messages 체크 해제
+
+컬럼 설명 출력
+윈도우 - 설정 - 편집기 - 데이터 편집기 - 표현방식 - Show column description in header 체크
