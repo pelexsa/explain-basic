@@ -1,0 +1,84 @@
+Swagger
+Restful API 문서화, 테스트를 도와주는 오픈 소스 프레임워크
+
+openApi
+적용 프로젝트 : https://github.com/pelexsa/toyShop
+사용 이유 : 현재 업데이트가 되고 있으며, springfox는 2.x.x 버전에서만 사용 가능하여 openapi를 사용하게 되었으나,
+인터넷에 있는 글을 보며 진행 하니 버전 차이로 인한 오류 발생
+
+적용
+Maven Repository 사이트가 아닌,
+https://springdoc.org/를 참고하여 최신 버전 라이브러리를 가져와 오류를 해결 하였다.
+
+1.build.gradle
+plugins {
+	id 'org.springframework.boot' version '3.1.0'
+}
+
+dependencies {
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
+}
+ 
+
+2.라이브러리가 정상적으로 다운 됐다면 http://localhost:8080/swagger-ui/ 접속하여,
+스웨거 기본 제공 화면, 루트 패키지내 Controller안에 Api확인
+
+3.Configuration
+OpenAPI Configuration을 생성하여 Swagger-ui 이름, 버전, 설명을 지정
+Info는 메소드 따로 빼서 주입해도 되고, 체이닝으로 인스턴스 생성 후 호출해서 사용
+
+@Configuration
+public class OpenApiConfig {
+    @Bean
+    public OpenAPI api() {
+        return new OpenAPI()
+                .components(new Components())
+                .info(info());
+    }
+
+    private Info info() {
+        return new Info()
+                .title("toyShop API Server")
+                .version("1.0.0")
+                .description("토이샵 API 서버");
+    }
+    
+}
+ 
+4.application.yml, properties
+## Swagger springdoc-ui Configuration, Swagger을 추가 설정 가능
+springdoc:
+  packages-to-scan: com.toyShop                                         # 스캔 범위 지정
+  default-consumes-media-type: application/json;charset=UTF-8           # Springdoc 요청 시, 사용할 미디어 유형
+  default-produces-media-type: application/json;charset=UTF-8           # Springdoc 응답 시, 사용할 미디어 유형
+  swagger-ui:
+    path: swagger-ui.html                                               # 접속 path : localhost:8080/swagger-ui/
+    tags-sorter: alpha                                                  # 태그 : 알파벳 순, method : HTTP method별로 알파벳 순
+    operations-sorter: alpha
+  api-docs:                                                             # API Docs 끝점, 영역별 그룹화
+    path: /api-docs/json
+    groups:
+      enabled: true
+  cache:
+    disabled: true                                                      # API 문서 캐싱 여부
+ 
+
+5.Controller 적용
+API 목차와 목차 안에 있는 API 설명 추가 하는 방법은 다음과 같으며,
+API 호출 시 응답 값을 보려면 json값으로 전달 해야한다.
+
+@RestController
+@Tag(name = "게시판", description = "게시판 부제") 
+public class BoardController {
+    
+    @RequestMapping(value = "/board", method = RequestMethod.GET)
+    @Operation(summary = "게시판 조회", description = "게시판 조회 설명")
+    public List<BoardDto> getBoardList() {
+        return boardService.getBoardList();
+    }
+
+}
+
+
+springfox
+ 
