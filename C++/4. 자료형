@@ -1,0 +1,64 @@
+자료형
+bit → 이진수, 최소 데이터 처리 단위
+byte → 8 bit, 한 문자 최소 단위
+const
+상수를 변경하지 못 하도록 사용
+컴파일 시점에 결정 되는건 constexpr
+런타임 시점에 결정 되는건 const
+
+
+원시형 타입을 인자로 받는 경우, 파라미터로 넘어 온 데이터를 복사하여
+새로운 메모리 주소값을 참조 후, 변수를 생성
+#include <bits/stdc++.h>
+using namespace std;
+
+void doSomething(int x) { ← 인자로 받은 x는 값이 복사 되어 새로운 메모리 주소를 할당해
+	x = 5;               x 메모리 주소 : 2, main 함수 x와 상이
+}
+
+int main () {
+	int x = 3;	     ← x 메모리 주소 : 1
+	doSomething(x);
+	return 0;
+}
+
+
+논리형
+boolean
+1byte, 거짓 → 0, 참 → 1 출력
+true, false 출력 → std::noboolalpha 사용
+cin bool 처리 시, 정수형으로 입력 받아야 처리됨
+
+문자형
+char
+1 byte
+문자를 7bit(2의 7승 : 128)개 표현 가능한 아스키코드(ASCII)로 1개의 문자를 인식 및 처리
+
+
+정수형
+signed     - 음수 + 0 + 양수 표현
+unsigned - 양수 + 0만 표현, 음수는 표현하지 않으므로 부호를 나타내는 최상위 비트도 사용
+
+unsigned 계산
+short s = 1; // 2 bytes = 2 * 8 bits = 16 bits
+pow(2, sizeof(short) * 8 -1(음수를 표현하는 bit) ) -1 (0을 표현하는 bit)
+
+int i = 123u; -> u가 붙으면 unsigend
+
+Binary (2진수) : 0 1
+Decimal (10진수) : 0 1 2 3 4 5 6 7 8 9 10
+Octal     (8진수)    : 0 1 2 3 4 5 6 7 10 11 12 13
+Hexa     (16진수)  : 0 1 2 3 4 5 6 7 8 9 A B C D E F 10
+
+2진수 표현 int a = 0b12;
+8진수 표현 int a = 012;
+10진수 표현 int a = 12;
+16진수 표현 int a = 0x12;
+중간에 길면 싱글 쿼테이션 사용해도 됨, 컴파일러가 무시
+
+
+
+실수형
+
+auto
+초기화할 데이터 값을 기준으로 자료형을 설정
