@@ -1,0 +1,38 @@
+스트림 , 버퍼설명
+http://www.tcpschool.com/cpp/cpp_io_streamBuffer
+
+버퍼 - 가득차거나, 개행 문자가 나타나면 버퍼 내용을 한번에 전송
+
+입력
+string s;
+cin >> variable
+사용자가 입력한 데이터를 스트림에 저장
+추출 연산자(>>)를 사용하여 스트림에 저장된 데이터를 variable에 저장
+cin를 사용하여 스트림에 있는 데이터를 변수에 저장할때 c++ 타입 변환 규칙에 따라 자동으로 형변환
+
+scanf(format, variable) 
+
+
+출력
+string s;
+cout << variable
+삽입 연산자(<<)를 사용하여 스트림에 데이터 저장
+cout를 사용하여 스트림에 있는 데이터를 화면에 출력
+
+printf(format, variable)
+
+출력 조정자
+int a = 10;
+cout << dec 10진수 ,oct 8진수 , hex 16진수로 변경 할 수 있는 조정자
+cout << a;
+
+ios::sync_with_stdio
+cpp iostream와 c stdio를 동기화 시켜주는 역할
+cin, cout의 버퍼는 동기화가 되어 있어서,
+순서에 따라 예기치 못한 결과를 초래할 수 있다.
+
+버퍼 동기화를 끊고 cin 입력, cout 출력 각자 사용하려면 
+ios::sync_with_stdio(false);
+cin.tie(0); 으로 사용해야 한다
+
+https://www.acmicpc.net/board/view/8074
