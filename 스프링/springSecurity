@@ -1,0 +1,55 @@
+순서도
+User [ID/PW]
+-->
+Authentication manager
+인증 수행 객체
+-->
+UserDetailService
+-->
+DB
+
+
+1.build.gradle
+시큐리티 라이브러리 추가
+implementation 'org.springframework.boot:spring-boot-starter-security'
+
+2.SecurityConfig
+SecurityFilterChain 반환 하는 시큐리티 빈 생성
+HttpSecurity http 사용하여 시큐리티 설정
+로그인 페이지, 홈 페이지 등 화면 + 컨트롤러 추가
+
+3.csrf, cors
+csrf 처리
+웹 시큐리티 추가
+http.csrf((csrf) -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()));
+header.html _csrf, _csrf_header 데이터 추가
+form 태그에는 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/> 추가
+공통 ajax function csrf 조회 후, beforeSend 추가
+
+4.AuthenticationProvider
+유저가 입력한 정보(ID/PW)와 DB 유저 정보를 비교
+로그인 시, 사용자가 입력한 아이디 비밀번호 확인 후 권한 및 세션 추가
+
+- UserDetail, passwordEncoder
+UserDetailsService 상속받아 구현해 DB에 있는 데이터를 조회하며
+데이터가 있을 경우, 회원 객체를 반환
+
+passwordEncoder 구현하여
+비밀번호에 대한 처리를 어떻게 할지 결정
+이 부분이 아예 없으면 비밀번호 확인이 안되어 로그인 불가
+
+
+5.successHandler, failureHandler
+성공 실패 시 핸들러 추가
+
+실패
+failureHandler 핸들러 추가
+login 화면 이동 컨트롤러 메시지에서 데이터 모델에 추가 후 화면단 처리
+
+
+
+Controller 파라미터에서 인증된 사용자 정보 조회 방법
+Principal principal - 인증된 사용자 정보 조회
+Authentication authentication - 필요한 사용자 정보도 customPrincipal 생성하여 가공 가능
+
+
