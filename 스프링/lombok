@@ -1,0 +1,20 @@
+lombok
+dto, vo를 생성 시 반복 되는 getter, setter.. 등 반복되는 코드를 줄여주는 코드 다이어트 라이브러리
+
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+
+
+@Data 어노테이션은 아래 5개 어노테이션 기능 사용 가능
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
+@RequiredArgsConstructor
+
+로그 관련
+@Slf4j
+@Log4j2
