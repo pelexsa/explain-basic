@@ -1,0 +1,21 @@
+messages - 중복된 메시지를 처리하는 기능
+messages.properties 생성하여 공통 메시지 처리 가능
+messages.properties 하나만 생성된 경우, default 잡히게 되며 해당 값을 읽어온다.
+
+manual
+messages.properties, write using code (example : proj.title=토이프로젝트)
+
+thymeleaf
+#{proj.title}
+
+spring
+private final MessageSource message; -> Injected MessageSource
+message.getMessage("code(proj.title), Args(null), Locale(Locale.getDefault()));
+    code   -> code written in messages.properties
+    Args   -> parameter (code: Hello,{0}, Args: "world" -> Hello world)
+    Locale -> which language the message should be retrieved
+           -> Locale.KOREA = "ko_KR", Locale_KOREAN = "ko", Locale_ENGLISH = "en"
+
+
+
+internationalization -
