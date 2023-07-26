@@ -1,0 +1,65 @@
+@Bean
+메서드 단위로 지정 가능하며, 개발자가 커스텀하여 빈 생성 가능
+
+
+@Component
+클래스 단위로 지정 가능하며, 컴포넌트 스캔에 의해 스프링이 자동으로 빈 생성
+
+
+@Value
+빈으로 등록된 클래스에서 외부 프로퍼티 값을 주입 받아서 사용 가능
+
+사용법
+properties, yml 파일
+hello.value=Hello; 추가
+
+@Value("${hello.value}")
+private String str; -> Hello 데이터가 주입
+
+
+@PathVariable
+URL 경로 변수를 추출하여 컨트롤러 메서드의 파라미터로 주입하는 데 사용
+
+사용법
+@RequestMapping(value = “url/{id}”, method = RequestMethod.GET)
+public String example(@PathVariable("id") Long id)
+옵션 : required = false -> 필수 값 해제
+
+
+@RequestBody, @ResponseBody
+주로 비동기 처리 시, HTTP post, put 요청 메시지 body 부분에
+데이터를 담아 서버와 클라이언트가 주고 받음
+그때, HTTP message Body data <= parsing => java object
+
+사용법
+public @ResponseBody Dto example(@RequestBody Dto dto)
+
+
+@ModelAttribute
+파라미터 사용 : request parameter binding
+메서드 사용 : 컨트롤러 모든 요청 처리 전 실행 <- ??
+
+사용법
+public String Dto example(@ModelAttribute("dto") Dto dto)
+
+@ModelAttribute("appName")
+public String getAppName() {
+    return "My Awesome App";
+}
+
+
+@RequestMapping
+클래스 단위로 사용 시, 클래스 전체 path 지정
+메소드 단위로 사용 시, 각 메소드 별 path 지정
+옵션 : HTTP method, 헤더값에 따라 매핑
+
+사용법
+단일 매핑
+@RequestMapping(value = “url”, method = RequestMethod.GET, produces = “header”)
+
+다수 매핑
+@RequestMapping(value = {“/test1”,”/test2”}, method = RequestMethod.GET)
+value = {“{1}”,”{2}”} 이런식으로 여러개 매핑이 가능하지만, pathVariable을 통해서 구현한 경우에는 안됨
+
+method를 입력하는 대신
+@GetMapping @PostMapping 사용하여 명시적으로도 사용가능
