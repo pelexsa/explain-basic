@@ -1,0 +1,12 @@
+비즈니스 로직에는 404, 500등의 에러를 발생시켜 처리 해야하는 부분이 생긴다.
+하지만 소스 코드에서 throw new Exception();을 발생 시켜도 캐치하는 부분이 없다면 개발자 입장에서는 확인 하는 방법이 없다.
+
+에러를 처리하는 부분마다 try-catch 구문을 사용하면 에러를 catch로 처리 할 수 있지만
+이 방식은 메소드별로 처리해 주어야 하여 불편하다.
+
+그래서 Exception handling을 통하여 공통으로 처리해보자
+
+1. error code enum, response class 작성
+2. Exception handling class에서 핸들링
+
+적용 : https://github.com/pelexsa/mybatisThymeleaf/
